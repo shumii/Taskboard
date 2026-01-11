@@ -23,7 +23,7 @@ I would normally use controllers in the Web API but I had some difficulties gett
 ---
 
 ## Application Architecture Diagram
-![Architecture](./Images/image.png)
+![Architecture](image.png) 
 
 I’ve used a layered architecture to separate high-level concerns, keeping related responsibilities cohesive with loose coupling between layers. This improves testability and allows implementations to be replaced with minimal impact.
 
