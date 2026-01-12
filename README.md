@@ -11,7 +11,7 @@ I have assumed this will be a production ready design and not a proof of concept
 As multiple users can edit a task at the same time I have implemented optimistic locking where we use the row version to track if a version has changed since a user got the data, and if it has they would have to get the latest data and make their request again. As 
 we are using an in-memory data store this will not actually work, but will work if deployed to use SQL Server. Pessimistic locking is also an option, to aqcuire a lock on the task before making changes.
 
-The presentation layer, physical storage, logging, caching and security are out of the scope of this exercise.
+The presentation layer, physical storage, logging, caching, centralised error handling and security are out of the scope of this exercise.
 
 I have omitted the password field from the user model as I am not illustrating use of it via user creation and password setting. A password is a very sensitive bit of data which is usually not passed around, especially not from server to client.
 It is common practice today to use an identity provider such as Okta and Entra Id integrated through OAuth2 or SAML to take of auth. If we were to store the password, then of course we'd hash it.
