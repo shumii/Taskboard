@@ -1,7 +1,7 @@
 ﻿using TaskBoard.Domain.Model;
 using TaskBoard.Domain.Model.Enums;
 
-namespace TaskBoard.Web.DTO
+namespace TaskBoard.Domain.DTO
 {
     public class BoardTaskSummaryDTO
     {

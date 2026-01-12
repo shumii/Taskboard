@@ -9,7 +9,8 @@ namespace TaskBoard.Application.Services
     {
         Task<Board?> GetBoardAsync(Guid id);
         Task<BoardTask?> GetBoardTaskAsync(Guid taskId);
-        Task UpsertTaskAsync(BoardTask task);
+        Task AddTaskAsync(BoardTask task);
+        Task UpdateTaskAsync(BoardTask task);
         Task UpdateTaskStatusAsync(Guid taskId, int status);
         Task DeleteTaskAsync(Guid taskId);        
     }

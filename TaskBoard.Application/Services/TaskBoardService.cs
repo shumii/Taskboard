@@ -28,26 +28,22 @@ namespace TaskBoard.Application.Services
             await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task UpsertTaskAsync(BoardTask task)
+        public async Task AddTaskAsync(BoardTask task)
         {
-            await unitOfWork.Tasks.UpsertAsync(task);
+            await unitOfWork.Tasks.AddAsync(task);
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task UpdateTaskAsync(BoardTask task)
+        {
+            await unitOfWork.Tasks.UpdateAsync(task);
             await unitOfWork.SaveChangesAsync();
         }
 
         public async Task UpdateTaskStatusAsync(Guid taskId, int status)
         {
-            var task = await unitOfWork.Tasks.GetByIdAsync(taskId);
-
-            if (task != null)
-            {
-                task.Status = (TaskStatuses)status;
-                await unitOfWork.Tasks.UpsertAsync(task);
-                await unitOfWork.SaveChangesAsync();                
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Task with ID {taskId} not found.");
-            }
+            await unitOfWork.Tasks.UpdateStatus(taskId, status);
+            await unitOfWork.SaveChangesAsync();
         }
     }
 }

@@ -4,7 +4,8 @@
     {
         Task<T?> GetByIdAsync(Guid id);
         Task<List<T>> GetAllAsync();
-        Task UpsertAsync(T entity);        
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);        
         Task AddRangeAsync(IEnumerable<T> entities);        
         Task DeleteAsync(Guid id);
         Task SaveChangesAsync();

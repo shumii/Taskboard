@@ -27,18 +27,23 @@ namespace TaskBoard.Data.Repository
             return await context.Set<T>().ToListAsync();
         }
 
-        public async Task UpsertAsync(T entity)
+        public async Task AddAsync(T entity)
+        {
+            await context.Set<T>().AddAsync(entity);
+        }
+
+        public async Task UpdateAsync(T entity)
         {
             var existingEntity = await context.Set<T>().FindAsync(entity.Id); // maybe better to check for null or empty Guid than db hit. Data integrity first, performance second
 
             if (existingEntity != null)
             {
-                context.Entry(existingEntity).CurrentValues.SetValues(entity);                
+                context.Entry(existingEntity).CurrentValues.SetValues(entity);
                 context.Set<T>().Update(existingEntity);
             }
             else
             {
-                await context.Set<T>().AddAsync(entity);
+                throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with Id {entity.Id} not found.");
             }
         }
 
@@ -52,6 +57,10 @@ namespace TaskBoard.Data.Repository
             if (entity != null)
             {
                 context.Set<T>().Remove(entity);
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with Id {id} not found.");
             }
         }
         public async Task SaveChangesAsync()

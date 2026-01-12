@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TaskBoard.Web.DTO
+namespace TaskBoard.Domain.DTO
 {
     public class UserDTO
     {
